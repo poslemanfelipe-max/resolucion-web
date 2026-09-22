@@ -1,0 +1,45 @@
+---
+import { Picture } from 'astro:assets';
+import { site } from '../data/site';
+import { foto } from '../lib/fotos';
+const fondo = foto(site.imagenes.portada);
+---
+
+<section id="inicio" class="hero" aria-label="Portada">
+  {
+    fondo && (
+      <div class="hero__fondo" aria-hidden="true">
+        <Picture
+          src={fondo}
+          alt=""
+          formats={['avif', 'webp']}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 900px) 50vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    )
+  }
+  <div class="hero__contenido">
+    <p class="hero__j" aria-hidden="true">J</p>
+    <h1 class="hero__titulo">{site.marca}</h1>
+    <p class="label hero__sub">{site.subtituloMarca}</p>
+    <p class="hero__nombre">{site.nombre}</p>
+    <p class="hero__lugar">{site.ubicacion}</p>
+  </div>
+  <a class="label hero__scroll" href="#frase">Scroll <span aria-hidden="true">⟶</span></a>
+  <span class="label hero__pie" aria-hidden="true">Portada</span>
+</section>
+
+<section id="frase" class="frase" aria-label="Manifiesto">
+  {
+    foto(site.imagenes.frase) && (
+      <div class="frase__fondo" aria-hidden="true">
+        <Picture src={foto(site.imagenes.frase)!} alt="" formats={['avif', 'webp']} widths={[640, 1200, 1920]} sizes="100vw" />
+      </div>
+    )
+  }
+  <p class="frase__texto reveal">{site.tagline}</p>
+  <p class="frase__sub reveal">{site.subtitulo}</p>
+</section>

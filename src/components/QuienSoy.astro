@@ -1,0 +1,29 @@
+---
+import { Picture } from 'astro:assets';
+import { site } from '../data/site';
+import { foto } from '../lib/fotos';
+const retrato = foto(site.imagenes.quienSoy);
+const q = site.quienSoy;
+---
+
+<section id="quien-soy" class="quien">
+  {
+    retrato && (
+      <div class="quien__foto reveal">
+        <Picture
+          src={retrato}
+          alt={`Retrato de ${site.nombre} sosteniendo su cámara`}
+          formats={['avif', 'webp']}
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 900px) 40vw, 100vw"
+        />
+      </div>
+    )
+  }
+  <div class="quien__texto reveal">
+    <p class="label">Quién soy</p>
+    <h2 class="quien__titulo">{q.titulo}</h2>
+    {q.parrafos.map((p, i) => <p class={i === 0 ? 'quien__lead' : undefined}>{p}</p>)}
+    <p><em>{q.cierre}</em></p>
+  </div>
+</section>

@@ -1,0 +1,63 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import { fotosDe } from '../lib/fotos';
+
+interface Props {
+  carpeta: string;
+  titulo: string;
+  bajada: string;
+  numero: string;
+}
+const { carpeta, titulo, bajada, numero } = Astro.props;
+const fotos = fotosDe(carpeta, titulo);
+
+// Versión grande de cada foto para el visor (lightbox).
+const grandes = await Promise.all(
+  fotos.map((f) => getImage({ src: f.src, width: Math.min(2000, f.src.width), format: 'webp', quality: 82 })),
+);
+const [portada, ...resto] = fotos;
+---
+
+<section id={carpeta} class="categoria" aria-labelledby={`titulo-${carpeta}`} data-galeria>
+  <div class:list={['categoria__portada', { 'categoria__portada--vacia': !portada }]}>
+    {
+      portada && (
+        <a class="categoria__portada-img" href={grandes[0].src} data-lightbox data-index="0" data-alt={portada.alt}>
+          <Picture
+            src={portada.src}
+            alt={portada.alt}
+            formats={['avif', 'webp']}
+            widths={[640, 1000, 1600, 2000].filter((w) => w <= portada.src.width)}
+            sizes="100vw"
+          />
+        </a>
+      )
+    }
+    <div class="categoria__cabecera reveal">
+      <span class="label categoria__numero">{numero}</span>
+      <h2 id={`titulo-${carpeta}`} class="categoria__titulo">{titulo}</h2>
+      <p class="categoria__bajada">{bajada}</p>
+    </div>
+  </div>
+
+  {
+    resto.length > 0 && (
+      <ul class="galeria" role="list">
+        {resto.map((f, i) => (
+          <li class="galeria__item reveal">
+            <a href={grandes[i + 1].src} data-lightbox data-index={i + 1} data-alt={f.alt}>
+              <Picture
+                src={f.src}
+                alt={f.alt}
+                formats={['avif', 'webp']}
+                widths={[400, 700, 1000].filter((w) => w <= f.src.width)}
+                sizes="(min-width: 1100px) 33vw, 50vw"
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  {!portada && <p class="categoria__pronto">Nuevas fotos muy pronto.</p>}
+</section>

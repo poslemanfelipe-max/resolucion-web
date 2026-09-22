@@ -1,0 +1,95 @@
+---
+import { Picture } from 'astro:assets';
+import { site } from '../data/site';
+import { foto } from '../lib/fotos';
+
+interface Props {
+  numero: string;
+}
+const { numero } = Astro.props;
+const fondo = foto(site.imagenes.video);
+
+// Reconoce links de YouTube y Vimeo.
+function parsear(url: string) {
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/);
+  if (yt) {
+    const id = yt[1];
+    return {
+      embed: `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`,
+      miniatura: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+    };
+  }
+  const vm = url.match(/vimeo\.com\/(?:.*\/)?(\d+)(?:\/(\w+))?/);
+  if (vm) {
+    const hash = vm[2] ? `&h=${vm[2]}` : '';
+    return {
+      embed: `https://player.vimeo.com/video/${vm[1]}?autoplay=1&dnt=1${hash}`,
+      miniatura: `https://vumbnail.com/${vm[1]}.jpg`,
+    };
+  }
+  return null;
+}
+
+const videos = site.video.lista
+  .map((v) => {
+    const datos = parsear(v.url);
+    return { ...v, datos: datos && { ...datos, miniatura: v.miniatura || datos.miniatura } };
+  })
+  .filter((v) => v.datos);
+---
+
+<section id="video" class="videos" aria-labelledby="titulo-video">
+  <div class:list={['categoria__portada', 'categoria__portada--video', { 'categoria__portada--vacia': !fondo }]}>
+    {
+      fondo && (
+        <div class="categoria__portada-img" aria-hidden="true">
+          <Picture src={fondo} alt="" formats={['avif', 'webp']} widths={[640, 1000, 1600]} sizes="100vw" />
+        </div>
+      )
+    }
+    <div class="categoria__cabecera reveal">
+      <span class="label categoria__numero">{numero}</span>
+      <h2 id="titulo-video" class="categoria__titulo">{site.video.titulo}</h2>
+      <p class="categoria__bajada">{site.video.bajada}</p>
+    </div>
+  </div>
+
+  {
+    videos.length > 0 ? (
+      <ul class="videos__lista" role="list">
+        {videos.map((v) => (
+          <li class="video reveal">
+            <div class="video__marco">
+              <button class="video__play" type="button" data-embed={v.datos!.embed} data-titulo={v.titulo}>
+                <img src={v.datos!.miniatura} alt="" loading="lazy" decoding="async" width="480" height="360" />
+                <span class="video__icono" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <span class="visually-hidden">Reproducir video: {v.titulo}</span>
+              </button>
+            </div>
+            <h3 class="video__titulo">{v.titulo}</h3>
+            {v.descripcion && <p class="video__desc">{v.descripcion}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="categoria__pronto">Nuevos videos muy pronto.</p>
+    )
+  }
+</section>
+
+<script>
+  // Carga el reproductor recién cuando se toca "play" (así la página carga rápido).
+  document.querySelectorAll<HTMLButtonElement>('.video__play').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = btn.dataset.embed!;
+      iframe.title = btn.dataset.titulo ?? 'Video';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      btn.replaceWith(iframe);
+      iframe.focus();
+    });
+  });
+</script>

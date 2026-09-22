@@ -1,0 +1,94 @@
+<dialog class="lightbox" aria-label="Visor de fotos" data-lightbox-dialog>
+  <figure class="lightbox__figura">
+    <img class="lightbox__img" alt="" decoding="async" />
+    <figcaption class="label lightbox__contador" aria-live="polite"></figcaption>
+  </figure>
+  <button class="lightbox__btn lightbox__cerrar" type="button" data-accion="cerrar" aria-label="Cerrar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" /></svg>
+  </button>
+  <button class="lightbox__btn lightbox__prev" type="button" data-accion="prev" aria-label="Foto anterior">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" /></svg>
+  </button>
+  <button class="lightbox__btn lightbox__next" type="button" data-accion="next" aria-label="Foto siguiente">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" /></svg>
+  </button>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox-dialog]')!;
+  const img = dialog.querySelector<HTMLImageElement>('.lightbox__img')!;
+  const contador = dialog.querySelector<HTMLElement>('.lightbox__contador')!;
+  let items: HTMLAnchorElement[] = [];
+  let actual = 0;
+  let origen: HTMLElement | null = null;
+
+  const mostrar = (i: number) => {
+    actual = (i + items.length) % items.length;
+    const a = items[actual];
+    img.src = a.href;
+    img.alt = a.dataset.alt ?? '';
+    contador.textContent = `${actual + 1} / ${items.length}`;
+    dialog.classList.toggle('is-single', items.length < 2);
+    // Precarga la siguiente y la anterior
+    [actual + 1, actual - 1].forEach((j) => {
+      const b = items[(j + items.length) % items.length];
+      if (b) new Image().src = b.href;
+    });
+  };
+
+  const cerrar = () => {
+    dialog.close();
+  };
+
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('no-scroll');
+    img.removeAttribute('src');
+    origen?.focus();
+  });
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-lightbox]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const galeria = a.closest('[data-galeria]');
+      items = Array.from(galeria?.querySelectorAll<HTMLAnchorElement>('[data-lightbox]') ?? [a]);
+      origen = a;
+      mostrar(items.indexOf(a));
+      document.body.classList.add('no-scroll');
+      dialog.showModal();
+    });
+  });
+
+  dialog.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-accion]');
+    if (btn) {
+      const accion = btn.dataset.accion;
+      if (accion === 'cerrar') cerrar();
+      if (accion === 'prev') mostrar(actual - 1);
+      if (accion === 'next') mostrar(actual + 1);
+      return;
+    }
+    // Click en el fondo (fuera de la foto) cierra
+    if (e.target === dialog || e.target === dialog.querySelector('.lightbox__figura')) cerrar();
+  });
+
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') mostrar(actual + 1);
+    if (e.key === 'ArrowLeft') mostrar(actual - 1);
+  });
+
+  // Swipe en celular
+  let x0: number | null = null;
+  let y0 = 0;
+  dialog.addEventListener('touchstart', (e) => {
+    x0 = e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+  }, { passive: true });
+  dialog.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    const dy = e.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) mostrar(actual + (dx < 0 ? 1 : -1));
+    else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) cerrar();
+  }, { passive: true });
+</script>

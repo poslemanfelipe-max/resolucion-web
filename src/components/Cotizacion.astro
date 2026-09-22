@@ -1,0 +1,86 @@
+---
+import { site } from '../data/site';
+const c = site.cotizacion;
+---
+
+<section id="cotizar" class="cotizar" aria-labelledby="titulo-cotizar">
+  <div class="cotizar__intro reveal">
+    <p class="label">Presupuesto</p>
+    <h2 id="titulo-cotizar" class="titulo-seccion">{c.titulo}</h2>
+    <p>{c.bajada}</p>
+  </div>
+
+  <form class="form reveal" novalidate data-form data-whatsapp={site.contacto.whatsapp} data-nombre={site.nombre.split(' ')[0]}>
+    <div class="campo">
+      <label for="f-nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
+      <input id="f-nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="e-nombre" />
+      <p class="campo__error" id="e-nombre">Contame tu nombre.</p>
+    </div>
+    <div class="campo">
+      <label for="f-tipo">Tipo de trabajo <span class="req" aria-hidden="true">*</span></label>
+      <select id="f-tipo" name="tipo" required aria-describedby="e-tipo">
+        <option value="" selected disabled>Elegí una opción</option>
+        {c.tiposDeTrabajo.map((t) => <option value={t}>{t}</option>)}
+      </select>
+      <p class="campo__error" id="e-tipo">Elegí el tipo de trabajo.</p>
+    </div>
+    <div class="form__fila">
+      <div class="campo">
+        <label for="f-fecha">Fecha estimada <span class="opc">(opcional)</span></label>
+        <input id="f-fecha" name="fecha" type="text" placeholder="Ej: 15 de marzo" />
+      </div>
+      <div class="campo">
+        <label for="f-lugar">Lugar <span class="opc">(opcional)</span></label>
+        <input id="f-lugar" name="lugar" type="text" placeholder="Ej: Tigre" />
+      </div>
+    </div>
+    <div class="campo">
+      <label for="f-idea">Contame tu idea <span class="req" aria-hidden="true">*</span></label>
+      <textarea id="f-idea" name="idea" rows="5" required aria-describedby="e-idea"></textarea>
+      <p class="campo__error" id="e-idea">Contame un poco de qué se trata.</p>
+    </div>
+    <p class="form__nota"><span aria-hidden="true">*</span> Campos obligatorios. Al enviar se abre WhatsApp con tu mensaje listo.</p>
+    <button class="boton" type="submit">
+      Enviar por WhatsApp <span aria-hidden="true">⟶</span>
+    </button>
+  </form>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-form]')!;
+
+  const validar = (campo: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+    const ok = campo.value.trim() !== '';
+    campo.setAttribute('aria-invalid', String(!ok));
+    campo.closest('.campo')?.classList.toggle('is-error', !ok);
+    return ok;
+  };
+
+  const obligatorios = Array.from(form.querySelectorAll<HTMLInputElement>('[required]'));
+  obligatorios.forEach((c) => {
+    c.addEventListener('blur', () => c.value && validar(c));
+    c.addEventListener('input', () => c.closest('.campo')?.classList.contains('is-error') && validar(c));
+    c.addEventListener('change', () => c.closest('.campo')?.classList.contains('is-error') && validar(c));
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const invalidos = obligatorios.filter((c) => !validar(c));
+    if (invalidos.length) {
+      invalidos[0].focus();
+      return;
+    }
+    const d = new FormData(form);
+    const v = (k: string) => String(d.get(k) ?? '').trim();
+    const lineas = [
+      `Hola ${form.dataset.nombre}! Soy ${v('nombre')}.`,
+      `Quiero cotizar un trabajo de ${v('tipo')}.`,
+      v('fecha') && `Fecha: ${v('fecha')}.`,
+      v('lugar') && `Lugar: ${v('lugar')}.`,
+      `Idea: ${v('idea')}`,
+    ].filter(Boolean);
+    const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(lineas.join('\n'))}`;
+    const ventana = window.open(url, '_blank');
+    if (!ventana) window.location.href = url;
+  });
+</script>

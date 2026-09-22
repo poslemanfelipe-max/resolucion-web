@@ -1,0 +1,49 @@
+---
+import { site } from '../data/site';
+const links = [
+  { href: '#quien-soy', texto: 'Quién soy' },
+  { href: '#trabajos', texto: 'Trabajos' },
+  { href: '#video', texto: 'Video' },
+  { href: '#cotizar', texto: 'Cotizá' },
+  { href: '#contacto', texto: 'Contacto' },
+];
+---
+
+<header class="nav" data-nav>
+  <a class="nav__marca" href="#inicio" aria-label={`${site.marca} — volver al inicio`}>{site.marca}</a>
+  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" data-nav-toggle>
+    <span class="visually-hidden">Abrir menú</span>
+    <span class="nav__burger" aria-hidden="true"></span>
+  </button>
+  <nav id="menu" class="nav__menu" aria-label="Principal">
+    <ul class="nav__links">
+      {links.map((l) => <li><a href={l.href}>{l.texto}</a></li>)}
+    </ul>
+    <ul class="nav__cats" aria-label="Categorías">
+      {site.categorias.map((c) => <li><a href={`#${c.carpeta}`}>{c.titulo}</a></li>)}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]')!;
+  const toggle = nav.querySelector<HTMLButtonElement>('[data-nav-toggle]')!;
+  const label = toggle.querySelector('.visually-hidden')!;
+  const setOpen = (open: boolean) => {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Cerrar menú' : 'Abrir menú';
+    document.body.classList.toggle('no-scroll', open);
+  };
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
