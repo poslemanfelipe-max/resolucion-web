@@ -45,9 +45,17 @@ elegir el orden, poneles números adelante:
 03-detalle-anillos.jpg
 ```
 
-**La primera foto de cada carpeta es la portada de la categoría** (la que se ve
-grande, a pantalla completa, con el título encima). Elegí para el `01-` una foto
-horizontal o con espacio abajo a la izquierda para el título.
+### La carátula de cada categoría
+
+Es la imagen grande, a pantalla completa, con el título encima.
+
+- Si en la carpeta hay un archivo llamado **`portada`** (`portada.jpg`,
+  `portada.webp`...), esa es la carátula y no se repite en la grilla. Sirve también
+  para collages armados en Canva.
+- Si no hay `portada`, la carátula es la primera foto (la `01-`).
+
+Conviene una imagen horizontal, con espacio abajo a la izquierda para el título.
+La carátula de **Video** es `fotos/sitio/portada-video.jpg`.
 
 ### Descripción de las fotos (texto alternativo)
 
