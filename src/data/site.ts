@@ -67,6 +67,10 @@ export const site = {
       'Novia con corona de flores y velo camina del brazo de un hombre con boina y pañuelo rojo en un casamiento de campo',
     'recitales/01-cantante-con-guitarra.jpg':
       'Cantante sonríe frente al micrófono mientras toca la guitarra acústica en un show nocturno',
+    'recitales/02-baterista-en-vivo.jpg':
+      'Baterista con anteojos de sol toca en vivo bajo luces azules y naranjas',
+    'eventos/02-manos-casamiento.jpg':
+      'Manos entrelazadas en blanco y negro durante un casamiento, junto a un ramo de flores',
   } as Record<string, string>,
 
   // --- Video ---------------------------------------------------------
