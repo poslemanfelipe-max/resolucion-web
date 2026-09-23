@@ -627,6 +627,11 @@ ul {
   cursor: zoom-in;
 }
 
+.categoria__portada-img--fija,
+.categoria__portada--video .categoria__portada-img {
+  cursor: default;
+}
+
 .categoria__portada-img img {
   width: 100%;
   height: 100%;

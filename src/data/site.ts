@@ -31,7 +31,7 @@ export const site = {
     quienSoy: 'sitio/juana.jpg', // retrato de "Quién soy"
     compartir: 'sitio/juana.jpg', // la que se ve al compartir el link por WhatsApp/Instagram
     frase: 'sitio/mar.jpg', // foto de fondo de la frase (vacío o si no existe = fondo azul liso)
-    video: '', // foto de fondo del título "Video" (vacío = fondo liso)
+    video: 'sitio/portada-video.jpg', // carátula del título "Video" (si no existe = fondo liso)
   },
 
   // --- Quién soy -----------------------------------------------------
@@ -61,6 +61,8 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'moda/portada.webp':
+      'Dos modelos con prendas en tonos tierra y celeste posan en un campo abierto bajo el cielo azul',
     'corporativo/01-equipo-con-notebook-y-mate.jpg':
       'Tres jóvenes miran una notebook en estudio, uno de ellos con un mate',
     'eventos/01-casamiento-campo.jpg':

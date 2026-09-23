@@ -9,27 +9,37 @@ interface Props {
   numero: string;
 }
 const { carpeta, titulo, bajada, numero } = Astro.props;
-const fotos = fotosDe(carpeta, titulo);
+const todas = fotosDe(carpeta, titulo);
+
+// Si hay un archivo llamado "portada" (portada.jpg, portada.webp...), esa es la
+// carátula y no se repite en la grilla. Si no, la carátula es la primera foto.
+const esPortada = (ruta: string) => /^portada\.[a-z]+$/i.test(ruta.split('/').pop() ?? '');
+const fija = todas.find((f) => esPortada(f.ruta));
+const fotos = todas.filter((f) => !esPortada(f.ruta));
+const portada = fija ?? fotos[0];
+const galeria = fija ? fotos : fotos.slice(1);
+const offset = fija ? 0 : 1; // la portada sin archivo "portada" también se abre en el visor
 
 // Versión grande de cada foto para el visor (lightbox).
 const grandes = await Promise.all(
   fotos.map((f) => getImage({ src: f.src, width: Math.min(2000, f.src.width), format: 'webp', quality: 82 })),
 );
-const [portada, ...resto] = fotos;
+const portadaWidths = portada ? [640, 1000, 1600, 2000].filter((w) => w <= portada.src.width) : [];
 ---
 
 <section id={carpeta} class="categoria" aria-labelledby={`titulo-${carpeta}`} data-galeria>
   <div class:list={['categoria__portada', { 'categoria__portada--vacia': !portada }]}>
     {
-      portada && (
+      portada && fija && (
+        <div class="categoria__portada-img categoria__portada-img--fija">
+          <Picture src={portada.src} alt={portada.alt} formats={['avif', 'webp']} widths={portadaWidths} sizes="100vw" />
+        </div>
+      )
+    }
+    {
+      portada && !fija && (
         <a class="categoria__portada-img" href={grandes[0].src} data-lightbox data-index="0" data-alt={portada.alt}>
-          <Picture
-            src={portada.src}
-            alt={portada.alt}
-            formats={['avif', 'webp']}
-            widths={[640, 1000, 1600, 2000].filter((w) => w <= portada.src.width)}
-            sizes="100vw"
-          />
+          <Picture src={portada.src} alt={portada.alt} formats={['avif', 'webp']} widths={portadaWidths} sizes="100vw" />
         </a>
       )
     }
@@ -41,11 +51,11 @@ const [portada, ...resto] = fotos;
   </div>
 
   {
-    resto.length > 0 && (
+    galeria.length > 0 && (
       <ul class="galeria" role="list">
-        {resto.map((f, i) => (
+        {galeria.map((f, i) => (
           <li class="galeria__item reveal">
-            <a href={grandes[i + 1].src} data-lightbox data-index={i + 1} data-alt={f.alt}>
+            <a href={grandes[i + offset].src} data-lightbox data-index={i + offset} data-alt={f.alt}>
               <Picture
                 src={f.src}
                 alt={f.alt}
@@ -60,4 +70,5 @@ const [portada, ...resto] = fotos;
     )
   }
   {!portada && <p class="categoria__pronto">Nuevas fotos muy pronto.</p>}
+  {portada && fija && galeria.length === 0 && <p class="categoria__pronto">Nuevas fotos muy pronto.</p>}
 </section>
