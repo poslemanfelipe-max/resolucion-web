@@ -61,6 +61,12 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'eventos/portada.webp': 'Intercambio de anillos en una ceremonia al aire libre',
+    'corporativo/portada.webp':
+      'Collage de trabajos corporativos: producto, envíos, una oradora con micrófono, un evento de marca y un equipo trabajando',
+    'recitales/portada.webp': 'Cantante en blanco y negro canta con el micrófono bajo las luces del escenario',
+    'documental/portada.webp':
+      'Collage documental: paisajes del sur, kitesurf, retratos en familia, un mate, una peregrinación y una chica tocando la guitarra',
     'moda/portada.webp':
       'Dos modelos con prendas en tonos tierra y celeste posan en un campo abierto bajo el cielo azul',
     'corporativo/01-equipo-con-notebook-y-mate.jpg':
