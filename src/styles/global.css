@@ -384,13 +384,6 @@ ul {
   justify-items: center;
 }
 
-.hero__j {
-  font-size: clamp(5.5rem, 22vw, 11rem);
-  font-weight: 800;
-  line-height: 0.85;
-  margin-bottom: 0.1em;
-}
-
 .hero__titulo {
   font-size: clamp(2.4rem, 11.5vw, 7.5rem);
   font-weight: 800;
@@ -512,7 +505,7 @@ ul {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(20, 32, 46, 0.35);
+  background: rgba(20, 32, 46, 0.25);
 }
 
 .frase__texto {

@@ -30,7 +30,7 @@ export const site = {
     portada: 'sitio/juana.jpg', // foto tenue del fondo de la portada
     quienSoy: 'sitio/juana.jpg', // retrato de "Quién soy"
     compartir: 'sitio/juana.jpg', // la que se ve al compartir el link por WhatsApp/Instagram
-    frase: '', // foto de fondo de la frase (vacío = fondo azul liso)
+    frase: 'sitio/mar.jpg', // foto de fondo de la frase (vacío o si no existe = fondo azul liso)
     video: '', // foto de fondo del título "Video" (vacío = fondo liso)
   },
 
