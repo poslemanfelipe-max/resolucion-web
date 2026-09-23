@@ -16,7 +16,7 @@ export const site = {
 
   // Dirección web definitiva del sitio (sin barra al final).
   // Cambiala cuando tengas el dominio propio, ej: 'https://resolucion.com.ar'
-  url: 'https://Resolucion-Web.vercel.app',
+  url: 'https://resolucion-web.vercel.app',
 
   // --- SEO: lo que aparece en Google y al compartir el link ----------
   seo: {
