@@ -538,7 +538,6 @@ ul {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: 50% 30%;
-  filter: grayscale(0.85) sepia(0.2) contrast(0.95);
 }
 
 .quien__texto {
