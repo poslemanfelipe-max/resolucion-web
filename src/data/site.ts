@@ -31,7 +31,7 @@ export const site = {
     quienSoy: 'sitio/juana.jpg', // retrato de "Quién soy"
     compartir: 'sitio/juana.jpg', // la que se ve al compartir el link por WhatsApp/Instagram
     frase: 'sitio/mar.jpg', // foto de fondo de la frase (vacío o si no existe = fondo azul liso)
-    video: 'sitio/portada-video.jpg', // carátula del título "Video" (si no existe = fondo liso)
+    video: 'sitio/mar.jpg', // carátula del título "Video" (si no existe = fondo liso)
   },
 
   // --- Quién soy -----------------------------------------------------

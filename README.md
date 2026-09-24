@@ -55,7 +55,7 @@ Es la imagen grande, a pantalla completa, con el título encima.
 - Si no hay `portada`, la carátula es la primera foto (la `01-`).
 
 Conviene una imagen horizontal, con espacio abajo a la izquierda para el título.
-La carátula de **Video** es `fotos/sitio/portada-video.jpg`.
+La carátula de **Video** usa la foto del mar (`fotos/sitio/mar.jpg`); se cambia en `site.ts` → `imagenes` → `video`.
 
 ### Descripción de las fotos (texto alternativo)
 
