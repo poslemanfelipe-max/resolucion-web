@@ -88,7 +88,8 @@ export const site = {
     'documental/01-lectura-y-mate-al-sol.jpg':
       'Mujer con gorra lee sentada en el pasto con un mate, rodeada de mantas de lana bajo el sol',
     'documental/02-terneros.jpg': 'Dos terneros con caravanas miran a cámara, en blanco y negro',
-    'eventos/portada.webp': 'Intercambio de anillos en una ceremonia al aire libre',
+    'eventos/portada.jpg':
+      'Los novios de pie frente al altar de una iglesia, con los invitados a ambos lados de la alfombra roja',
     'corporativo/portada.webp':
       'Collage de trabajos corporativos: producto, envíos, una oradora con micrófono, un evento de marca y un equipo trabajando',
     'recitales/portada.webp': 'Cantante en blanco y negro canta con el micrófono bajo las luces del escenario',
