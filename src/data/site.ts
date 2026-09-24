@@ -64,11 +64,11 @@ export const site = {
     'corporativo/02-ponchos-artesanales.jpg':
       'Tres ponchos artesanales de lana en rojo, naranja y crudo colgados en percheros de madera',
     'corporativo/03-helado-arnaldo.jpg': 'Dos manos se pasan un vaso de helado de pistacho de la heladería Arnaldo',
-    'corporativo/04-modelo-sentada-en-tranquera.jpg':
+    'moda/02-modelo-sentada-en-tranquera.jpg':
       'Modelo de pelo largo y rizado con vestido claro y cinturón de cuero, sentada en una tranquera de campo',
-    'corporativo/05-modelo-con-botas-de-montar.jpg':
+    'moda/03-modelo-con-botas-de-montar.jpg':
       'Modelo con conjunto celeste y beige y botas de montar de cuero, sentada frente a un campo de polo',
-    'corporativo/06-morral-talabarteria-la-rodada.jpg':
+    'corporativo/04-morral-talabarteria-la-rodada.jpg':
       'Morral de cuero marrón con escudo de metal y etiqueta de Talabartería La Rodada, junto a un mate',
     'moda/01-modelo-junto-al-alambrado.jpg':
       'Modelo de pelo largo con vestido claro y trenzas celestes, apoyada en un poste junto a un alambrado de campo',
