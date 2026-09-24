@@ -49,9 +49,11 @@ export const site = {
   // "carpeta" es el nombre de la carpeta dentro de fotos/ y también el
   // link directo a la sección (ej: tusitio.com/#moda).
   // El orden de esta lista es el orden en que aparecen en la página.
+  // "encuadre" (opcional) elige qué parte de la carátula se ve cuando la
+  // pantalla la recorta: '50% 0%' = arriba, '50% 50%' = centro, '50% 100%' = abajo.
   categorias: [
     { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.' },
-    { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.' },
+    { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 65%' },
     { carpeta: 'corporativo', titulo: 'Corporativo', bajada: 'Marcas y contenido institucional.' },
     { carpeta: 'recitales', titulo: 'Recitales', bajada: 'Shows y música en vivo.' },
     { carpeta: 'documental', titulo: 'Documental', bajada: 'Historias y proyectos personales.' },

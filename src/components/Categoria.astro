@@ -7,8 +7,9 @@ interface Props {
   titulo: string;
   bajada: string;
   numero: string;
+  encuadre?: string;
 }
-const { carpeta, titulo, bajada, numero } = Astro.props;
+const { carpeta, titulo, bajada, numero, encuadre } = Astro.props;
 const todas = fotosDe(carpeta, titulo);
 
 // Si hay un archivo llamado "portada" (portada.jpg, portada.webp...), esa es la
@@ -28,7 +29,10 @@ const portadaWidths = portada ? [640, 1000, 1600, 2000].filter((w) => w <= porta
 ---
 
 <section id={carpeta} class="categoria" aria-labelledby={`titulo-${carpeta}`} data-galeria>
-  <div class:list={['categoria__portada', { 'categoria__portada--vacia': !portada }]}>
+  <div
+    class:list={['categoria__portada', { 'categoria__portada--vacia': !portada }]}
+    style={encuadre ? `--encuadre: ${encuadre}` : undefined}
+  >
     {
       portada && fija && (
         <div class="categoria__portada-img categoria__portada-img--fija">
