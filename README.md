@@ -113,8 +113,8 @@ Qué hay ahí:
    orden, ej. `04-videoclip.mp4`.
 2. (Opcional) Subí una imagen `.jpg` **con el mismo nombre** (`04-videoclip.jpg`):
    es la portada que se ve antes de tocar play. Si no hay, se ve un fondo negro.
-3. (Opcional) En `src/data/site.ts`, dentro de `video` → `archivos`, podés poner un
-   título y una descripción. Si no, el título sale del nombre del archivo.
+3. (Opcional) Los videos no llevan título. Si querés ponerle título o descripción
+   a alguno, se agrega en `src/data/site.ts`, dentro de `video` → `archivos`.
 
 Conviene que cada video pese menos de 20 MB (los de WhatsApp ya vienen livianos).
 Para videos largos o de alta calidad, mejor subirlos a YouTube o Vimeo (abajo).

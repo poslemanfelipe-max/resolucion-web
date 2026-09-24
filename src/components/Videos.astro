@@ -54,7 +54,10 @@ const propios = archivos
     return {
       src: `/videos/${a}`,
       poster: poster ? `/videos/${poster}` : undefined,
-      titulo: textos.titulo ?? (desdeNombre.charAt(0).toUpperCase() + desdeNombre.slice(1) || 'Video'),
+      // El título solo se muestra si está escrito en site.ts; si no, se usa el
+      // nombre del archivo únicamente para lectores de pantalla.
+      titulo: textos.titulo,
+      etiqueta: textos.titulo ?? (desdeNombre.charAt(0).toUpperCase() + desdeNombre.slice(1) || 'Video'),
       descripcion: textos.descripcion,
     };
   });
@@ -82,15 +85,15 @@ const propios = archivos
         {propios.map((v) => (
           <li class="video video--vertical reveal">
             <div class="video__marco">
-              <button class="video__play" type="button" data-video={v.src} data-titulo={v.titulo}>
+              <button class="video__play" type="button" data-video={v.src} data-titulo={v.etiqueta}>
                 {v.poster && <img src={v.poster} alt="" loading="lazy" decoding="async" width="720" height="1280" />}
                 <span class="video__icono" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                 </span>
-                <span class="visually-hidden">Reproducir video: {v.titulo}</span>
+                <span class="visually-hidden">Reproducir video: {v.etiqueta}</span>
               </button>
             </div>
-            <h3 class="video__titulo">{v.titulo}</h3>
+            {v.titulo && <h3 class="video__titulo">{v.titulo}</h3>}
             {v.descripcion && <p class="video__desc">{v.descripcion}</p>}
           </li>
         ))}
