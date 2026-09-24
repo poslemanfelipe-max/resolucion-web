@@ -61,6 +61,11 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'moda/01-modelo-junto-al-alambrado.jpg':
+      'Modelo de pelo largo con vestido claro y trenzas celestes, apoyada en un poste junto a un alambrado de campo',
+    'documental/01-lectura-y-mate-al-sol.jpg':
+      'Mujer con gorra lee sentada en el pasto con un mate, rodeada de mantas de lana bajo el sol',
+    'documental/02-terneros.jpg': 'Dos terneros con caravanas miran a cámara, en blanco y negro',
     'eventos/portada.webp': 'Intercambio de anillos en una ceremonia al aire libre',
     'corporativo/portada.webp':
       'Collage de trabajos corporativos: producto, envíos, una oradora con micrófono, un evento de marca y un equipo trabajando',
