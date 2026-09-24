@@ -61,6 +61,14 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'eventos/06-novia-preparandose.jpg':
+      'Perfil de la novia con rodete y aros de perla mientras la maquillan, en blanco y negro',
+    'eventos/07-novia-entrando-a-la-iglesia.jpg':
+      'La novia, con capa de encaje, entra del brazo de un hombre de jaquet frente a una gran puerta de madera',
+    'eventos/08-novia-con-amigas.jpg':
+      'La novia ríe abrazada con cuatro mujeres de vestidos de fiesta frente a un cerco verde',
+    'eventos/09-fiesta-novios-en-andas.jpg':
+      'Los novios bailan levantados en andas por los invitados bajo bolas de espejos en la fiesta',
     'eventos/03-novios-entrando-al-jardin.jpg':
       'Novios sonrientes entran del brazo a un jardín, ella con vestido claro y ramo de flores blancas',
     'eventos/04-invitados-emocionados.jpg':
