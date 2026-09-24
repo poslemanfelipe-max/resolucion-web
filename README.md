@@ -55,7 +55,8 @@ Se eligen en `src/data/site.ts`, en la parte `portada` → `fotos`:
 { foto: 'eventos/portada.jpg' },
 ```
 
-- `foto` es la ruta dentro de la carpeta `fotos/` (la foto tiene que existir ahí).
+- `foto` es la ruta dentro de la carpeta `fotos/`. Las fotos que son solo para la
+  portada (no para una categoría) van en `fotos/sitio/portada/`.
 - El orden de la lista es el orden en que pasan. Conviene entre 5 y 8 fotos.
 - `encuadre` es opcional: si la pantalla corta una cara, se corrige con esto
   (`'50% 0%'` muestra la parte de arriba, `'50% 100%'` la de abajo).

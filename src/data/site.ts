@@ -35,17 +35,15 @@ export const site = {
   },
 
   // --- Portada: fotos que se van pasando solas ------------------------
-  // Ruta dentro de fotos/. "encuadre" (opcional) elige qué parte se ve si la
+  // Ruta dentro de fotos/. Las que no están en ninguna categoría van en fotos/sitio/portada/. "encuadre" (opcional) elige qué parte se ve si la
   // pantalla recorta la foto: '50% 0%' arriba, '50% 50%' centro, '50% 100%' abajo.
   portada: {
     fotos: [
-      { foto: 'moda/portada.webp', encuadre: '60% 40%' },
+      { foto: 'sitio/portada/01-modelos-en-el-campo.jpg', encuadre: '62% 35%' },
+      { foto: 'sitio/portada/02-abrazo-en-la-playa.jpg', encuadre: '50% 40%' },
+      { foto: 'sitio/portada/03-ternero.jpg', encuadre: '50% 64%' },
+      { foto: 'sitio/portada/04-llamas.jpg', encuadre: '12% 55%' },
       { foto: 'eventos/portada.jpg', encuadre: '50% 65%' },
-      { foto: 'recitales/portada.webp', encuadre: '50% 30%' },
-      { foto: 'moda/02-modelo-sentada-en-tranquera.jpg', encuadre: '50% 20%' },
-      { foto: 'eventos/09-fiesta-novios-en-andas.jpg', encuadre: '58% 40%' },
-      { foto: 'corporativo/02-ponchos-artesanales.jpg', encuadre: '50% 50%' },
-      { foto: 'documental/01-lectura-y-mate-al-sol.jpg', encuadre: '50% 60%' },
     ] as { foto: string; encuadre?: string }[],
   },
 
