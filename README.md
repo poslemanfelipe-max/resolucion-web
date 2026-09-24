@@ -107,6 +107,20 @@ Qué hay ahí:
 
 ## 3. Agregar videos
 
+### Videos propios (subidos al sitio)
+
+1. Subí el video `.mp4` a la carpeta **`public/videos`**. Numeralo para elegir el
+   orden, ej. `04-videoclip.mp4`.
+2. (Opcional) Subí una imagen `.jpg` **con el mismo nombre** (`04-videoclip.jpg`):
+   es la portada que se ve antes de tocar play. Si no hay, se ve un fondo negro.
+3. (Opcional) En `src/data/site.ts`, dentro de `video` → `archivos`, podés poner un
+   título y una descripción. Si no, el título sale del nombre del archivo.
+
+Conviene que cada video pese menos de 20 MB (los de WhatsApp ya vienen livianos).
+Para videos largos o de alta calidad, mejor subirlos a YouTube o Vimeo (abajo).
+
+### Videos de YouTube o Vimeo
+
 En `src/data/site.ts`, buscá la parte `video` y completá la `lista`:
 
 ```ts

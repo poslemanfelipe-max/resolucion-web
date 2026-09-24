@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import { Picture } from 'astro:assets';
 import { site } from '../data/site';
 import { foto } from '../lib/fotos';
@@ -36,6 +38,26 @@ const videos = site.video.lista
     return { ...v, datos: datos && { ...datos, miniatura: v.miniatura || datos.miniatura } };
   })
   .filter((v) => v.datos);
+
+// Videos propios: todos los .mp4 de public/videos, en orden alfabético.
+// La portada es la imagen con el mismo nombre (.jpg), si existe.
+const carpeta = path.join(process.cwd(), 'public', 'videos');
+const archivos = fs.existsSync(carpeta) ? fs.readdirSync(carpeta) : [];
+const propios = archivos
+  .filter((a) => /\.mp4$/i.test(a))
+  .sort((a, b) => a.localeCompare(b, 'es', { numeric: true }))
+  .map((a) => {
+    const base = a.replace(/\.mp4$/i, '');
+    const poster = archivos.find((x) => x.toLowerCase() === `${base}.jpg`.toLowerCase());
+    const textos = site.video.archivos[a] ?? {};
+    const desdeNombre = base.replace(/^[\d\s._-]+/, '').replace(/[-_]+/g, ' ').trim();
+    return {
+      src: `/videos/${a}`,
+      poster: poster ? `/videos/${poster}` : undefined,
+      titulo: textos.titulo ?? (desdeNombre.charAt(0).toUpperCase() + desdeNombre.slice(1) || 'Video'),
+      descripcion: textos.descripcion,
+    };
+  });
 ---
 
 <section id="video" class="videos" aria-labelledby="titulo-video">
@@ -54,6 +76,27 @@ const videos = site.video.lista
     </div>
   </div>
 
+  {
+    propios.length > 0 && (
+      <ul class="videos__propios" role="list">
+        {propios.map((v) => (
+          <li class="video video--vertical reveal">
+            <div class="video__marco">
+              <button class="video__play" type="button" data-video={v.src} data-titulo={v.titulo}>
+                {v.poster && <img src={v.poster} alt="" loading="lazy" decoding="async" width="720" height="1280" />}
+                <span class="video__icono" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <span class="visually-hidden">Reproducir video: {v.titulo}</span>
+              </button>
+            </div>
+            <h3 class="video__titulo">{v.titulo}</h3>
+            {v.descripcion && <p class="video__desc">{v.descripcion}</p>}
+          </li>
+        ))}
+      </ul>
+    )
+  }
   {
     videos.length > 0 ? (
       <ul class="videos__lista" role="list">
@@ -74,7 +117,7 @@ const videos = site.video.lista
         ))}
       </ul>
     ) : (
-      <p class="categoria__pronto">Nuevos videos muy pronto.</p>
+      propios.length === 0 && <p class="categoria__pronto">Nuevos videos muy pronto.</p>
     )
   }
 </section>
@@ -83,6 +126,20 @@ const videos = site.video.lista
   // Carga el reproductor recién cuando se toca "play" (así la página carga rápido).
   document.querySelectorAll<HTMLButtonElement>('.video__play').forEach((btn) => {
     btn.addEventListener('click', () => {
+      if (btn.dataset.video) {
+        const video = document.createElement('video');
+        video.src = btn.dataset.video;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('aria-label', btn.dataset.titulo ?? 'Video');
+        const poster = btn.querySelector('img');
+        if (poster) video.poster = poster.src;
+        btn.replaceWith(video);
+        video.play().catch(() => {});
+        video.focus();
+        return;
+      }
       const iframe = document.createElement('iframe');
       iframe.src = btn.dataset.embed!;
       iframe.title = btn.dataset.titulo ?? 'Video';

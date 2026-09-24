@@ -104,6 +104,15 @@ export const site = {
   video: {
     titulo: 'Video',
     bajada: 'Filmmaking y dirección audiovisual.',
+    // Videos propios: se suben a la carpeta public/videos (.mp4) y aparecen solos,
+    // en orden alfabético. Una imagen .jpg con el mismo nombre es su portada.
+    // Acá podés cambiar el título y agregar una descripción de cada uno:
+    archivos: {
+      '01-sesion-de-moda-en-el-campo.mp4': { titulo: 'Sesión de moda en el campo' },
+      '02-atardecer-en-el-campo.mp4': { titulo: 'Atardecer en el campo' },
+      '03-ruido-risas-movimiento.mp4': { titulo: 'Ruido, risas, movimiento' },
+    } as Record<string, { titulo?: string; descripcion?: string }>,
+    // Videos de YouTube o Vimeo:
     // Pegá acá los links de YouTube o Vimeo. Ejemplo:
     // { url: 'https://www.youtube.com/watch?v=XXXXXXXXXXX', titulo: 'Videoclip — Artista', descripcion: 'Dirección y cámara.' },
     // Si un video de Vimeo no muestra miniatura, agregá miniatura: 'link-a-una-imagen.jpg'.
