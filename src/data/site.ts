@@ -61,6 +61,11 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'eventos/03-novios-entrando-al-jardin.jpg':
+      'Novios sonrientes entran del brazo a un jardín, ella con vestido claro y ramo de flores blancas',
+    'eventos/04-invitados-emocionados.jpg':
+      'Invitados emocionados con la mano en el pecho durante una ceremonia al aire libre, en blanco y negro',
+    'eventos/05-abrazo-de-los-novios.jpg': 'La novia se ríe emocionada mientras abraza al novio, en blanco y negro',
     'corporativo/02-ponchos-artesanales.jpg':
       'Tres ponchos artesanales de lana en rojo, naranja y crudo colgados en percheros de madera',
     'corporativo/03-helado-arnaldo.jpg': 'Dos manos se pasan un vaso de helado de pistacho de la heladería Arnaldo',
