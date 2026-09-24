@@ -2,34 +2,87 @@
 import { Picture } from 'astro:assets';
 import { site } from '../data/site';
 import { foto } from '../lib/fotos';
-const fondo = foto(site.imagenes.portada);
----
 
-<section id="inicio" class="hero" aria-label="Portada">
-  {
-    fondo && (
-      <div class="hero__fondo" aria-hidden="true">
-        <Picture
-          src={fondo}
-          alt=""
-          formats={['avif', 'webp']}
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 900px) 50vw, 100vw"
-          loading="eager"
-          fetchpriority="high"
-        />
-      </div>
-    )
-  }
+// Fotos que van pasando en la portada (se eligen en site.ts → portada.fotos).
+const slides = site.portada.fotos
+  .map((f) => ({ ...f, src: foto(f.foto) }))
+  .filter((f) => f.src);
+const fondoFijo = foto(site.imagenes.portada);
+---
+<section id="inicio" class="hero" aria-label="Portada" data-hero>
+  <div class="hero__slides" aria-hidden="true">
+    {
+      slides.length > 0
+        ? slides.map((s, i) => (
+            <div
+              class:list={['hero__slide', { 'is-activa': i === 0 }]}
+              style={s.encuadre ? `--encuadre: ${s.encuadre}` : undefined}
+            >
+              <Picture
+                src={s.src!}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[640, 1000, 1600, 2000].filter((w) => w <= s.src!.width)}
+                sizes="100vw"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : 'low'}
+              />
+            </div>
+          ))
+        : fondoFijo && (
+            <div class="hero__slide is-activa">
+              <Picture src={fondoFijo} alt="" formats={['avif', 'webp']} widths={[640, 1000, 1600]} sizes="100vw" loading="eager" fetchpriority="high" />
+            </div>
+          )
+    }
+  </div>
   <div class="hero__contenido">
     <h1 class="hero__titulo">{site.marca}</h1>
     <p class="label hero__sub">{site.subtituloMarca}</p>
     <p class="hero__nombre">{site.nombre}</p>
     <p class="hero__lugar">{site.ubicacion}</p>
   </div>
+  {
+    slides.length > 1 && (
+      <div class="hero__puntos" aria-hidden="true">
+        {slides.map((_, i) => <span class:list={['hero__punto', { 'is-activo': i === 0 }]} />)}
+      </div>
+    )
+  }
   <a class="label hero__scroll" href="#frase">Scroll <span aria-hidden="true">⟶</span></a>
-  <span class="label hero__pie" aria-hidden="true">Portada</span>
 </section>
+
+<script>
+  // Pasa las fotos de la portada solas, con fundido. Se frena si la pestaña no
+  // está visible o si la persona pidió menos movimiento en su dispositivo.
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const slides = hero ? Array.from(hero.querySelectorAll<HTMLElement>('.hero__slide')) : [];
+  const puntos = hero ? Array.from(hero.querySelectorAll<HTMLElement>('.hero__punto')) : [];
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (hero && slides.length > 1 && !quieto) {
+    let actual = 0;
+    let timer: number | undefined;
+    const ir = (n: number) => {
+      slides[actual].classList.remove('is-activa');
+      puntos[actual]?.classList.remove('is-activo');
+      actual = (n + slides.length) % slides.length;
+      // Asegura que la siguiente foto ya esté cargada
+      slides[(actual + 1) % slides.length].querySelector('img')?.setAttribute('loading', 'eager');
+      slides[actual].classList.add('is-activa');
+      puntos[actual]?.classList.add('is-activo');
+    };
+    const arrancar = () => {
+      clearInterval(timer);
+      timer = window.setInterval(() => ir(actual + 1), 5000);
+    };
+    // Recién después de cargar la página se piden las demás fotos
+    window.addEventListener('load', () => {
+      slides[1]?.querySelector('img')?.setAttribute('loading', 'eager');
+      arrancar();
+    });
+    document.addEventListener('visibilitychange', () => (document.hidden ? clearInterval(timer) : arrancar()));
+  }
+</script>
 
 <section id="frase" class="frase" aria-label="Manifiesto">
   {

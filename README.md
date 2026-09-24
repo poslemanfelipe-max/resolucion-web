@@ -45,6 +45,23 @@ elegir el orden, poneles números adelante:
 03-detalle-anillos.jpg
 ```
 
+### Las fotos de la portada (las que pasan solas)
+
+Apenas alguien entra al sitio ve las mejores fotos pasando una detrás de otra.
+Se eligen en `src/data/site.ts`, en la parte `portada` → `fotos`:
+
+```ts
+{ foto: 'moda/portada.webp', encuadre: '60% 40%' },
+{ foto: 'eventos/portada.jpg' },
+```
+
+- `foto` es la ruta dentro de la carpeta `fotos/` (la foto tiene que existir ahí).
+- El orden de la lista es el orden en que pasan. Conviene entre 5 y 8 fotos.
+- `encuadre` es opcional: si la pantalla corta una cara, se corrige con esto
+  (`'50% 0%'` muestra la parte de arriba, `'50% 100%'` la de abajo).
+- Van mejor las fotos horizontales o con el sujeto al centro, porque en el
+  celular la pantalla es vertical y se recortan los costados.
+
 ### La carátula de cada categoría
 
 Es la imagen grande, a pantalla completa, con el título encima.

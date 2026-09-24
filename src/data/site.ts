@@ -27,11 +27,26 @@ export const site = {
 
   // --- Fotos especiales (están en la carpeta fotos/sitio/) -----------
   imagenes: {
-    portada: 'sitio/juana.jpg', // foto tenue del fondo de la portada
+    portada: 'sitio/juana.jpg', // fondo de la portada solo si la lista de arriba queda vacía
     quienSoy: 'sitio/juana.jpg', // retrato de "Quién soy"
     compartir: 'sitio/juana.jpg', // la que se ve al compartir el link por WhatsApp/Instagram
     frase: 'sitio/mar.jpg', // foto de fondo de la frase (vacío o si no existe = fondo azul liso)
     video: 'sitio/mar.jpg', // carátula del título "Video" (si no existe = fondo liso)
+  },
+
+  // --- Portada: fotos que se van pasando solas ------------------------
+  // Ruta dentro de fotos/. "encuadre" (opcional) elige qué parte se ve si la
+  // pantalla recorta la foto: '50% 0%' arriba, '50% 50%' centro, '50% 100%' abajo.
+  portada: {
+    fotos: [
+      { foto: 'moda/portada.webp', encuadre: '60% 40%' },
+      { foto: 'eventos/portada.jpg', encuadre: '50% 65%' },
+      { foto: 'recitales/portada.webp', encuadre: '50% 30%' },
+      { foto: 'moda/02-modelo-sentada-en-tranquera.jpg', encuadre: '50% 20%' },
+      { foto: 'eventos/09-fiesta-novios-en-andas.jpg', encuadre: '58% 40%' },
+      { foto: 'corporativo/02-ponchos-artesanales.jpg', encuadre: '50% 50%' },
+      { foto: 'documental/01-lectura-y-mate-al-sol.jpg', encuadre: '50% 60%' },
+    ] as { foto: string; encuadre?: string }[],
   },
 
   // --- Quién soy -----------------------------------------------------
