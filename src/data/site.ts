@@ -40,8 +40,6 @@ export const site = {
   portada: {
     fotos: [
       { foto: 'sitio/portada/01-modelos-en-el-campo.jpg', encuadre: '62% 35%' },
-      { foto: 'sitio/portada/02-abrazo-en-la-playa.jpg', encuadre: '50% 40%' },
-      { foto: 'sitio/portada/03-ternero.jpg', encuadre: '50% 64%' },
       { foto: 'sitio/portada/04-llamas.jpg', encuadre: '12% 55%' },
       { foto: 'eventos/portada.jpg', encuadre: '50% 65%' },
     ] as { foto: string; encuadre?: string }[],
@@ -52,7 +50,7 @@ export const site = {
     titulo: 'Soy Juana Andrada.',
     parrafos: [
       'Fotógrafa y filmmaker de Tigre, Buenos Aires.',
-      'Actualmente estudio Producción y Dirección Audiovisual. A través de RESOLUCIÓN desarrollo imágenes y narrativas audiovisuales para artistas, marcas, emprendimientos y proyectos culturales.',
+      'Soy Licenciada en Producción y Dirección de Contenidos Audiovisuales. A través de RESOLUCIÓN desarrollo imágenes y narrativas audiovisuales para artistas, marcas, emprendimientos y proyectos culturales.',
     ],
     // Esta frase va en itálica:
     cierre: 'Mi trabajo combina una mirada documental, editorial y cinematográfica.',
