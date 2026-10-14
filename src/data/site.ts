@@ -50,7 +50,7 @@ export const site = {
     titulo: 'Soy Juana Andrada.',
     parrafos: [
       'Fotógrafa y filmmaker de Tigre, Buenos Aires.',
-      'Soy Licenciada en Producción y Dirección de Contenidos Audiovisuales. A través de RESOLUCIÓN desarrollo imágenes y narrativas audiovisuales para artistas, marcas, emprendimientos y proyectos culturales.',
+      'Licenciada en Producción y Dirección de Contenidos Audiovisuales. A través de RESOLUCIÓN desarrollo imágenes y narrativas audiovisuales para artistas, marcas, emprendimientos y proyectos culturales.',
     ],
     // Esta frase va en itálica:
     cierre: 'Mi trabajo combina una mirada documental, editorial y cinematográfica.',
