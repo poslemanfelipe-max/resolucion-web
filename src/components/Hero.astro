@@ -73,7 +73,7 @@ const fondoFijo = foto(site.imagenes.portada);
     };
     const arrancar = () => {
       clearInterval(timer);
-      timer = window.setInterval(() => ir(actual + 1), 3500);
+      timer = window.setInterval(() => ir(actual + 1), 2000);
     };
     // Recién después de cargar la página se piden las demás fotos
     window.addEventListener('load', () => {

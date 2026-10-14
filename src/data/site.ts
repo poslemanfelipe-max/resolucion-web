@@ -11,7 +11,7 @@ export const site = {
   nombre: 'Juana Andrada',
   ubicacion: 'Tigre, Buenos Aires, Argentina',
   subtituloMarca: 'Fotografía + Audiovisual',
-  tagline: 'The world is shaped by the way we see it.',
+  tagline: 'El mundo cambia según cómo lo mirás.',
   subtitulo: 'Fotografía, cine y dirección audiovisual',
 
   // Dirección web definitiva del sitio (sin barra al final).
@@ -74,6 +74,17 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'recitales/01-cantante-en-el-teclado.jpg':
+      'Cantante con anteojos de sol y corbata roja canta mientras toca un teclado rojo',
+    'recitales/02-guitarrista-con-anteojos.jpg': 'Guitarrista con anteojos de sol y camisa clara toca una guitarra eléctrica en vivo',
+    'recitales/03-cantante-bajo-luz-roja.jpg': 'Cantante con los ojos cerrados aferrada al micrófono bajo una luz roja',
+    'recitales/04-saxo-entre-el-publico.jpg':
+      'Saxofonista toca en medio del público que levanta las manos, en blanco y negro',
+    'recitales/05-baterista-sonriendo.jpg': 'Baterista con anteojos de sol sonríe con los palillos en alto',
+    'recitales/06-cantante-con-sombrero.jpg':
+      'Cantante con sombrero y barba canta frente al micrófono con su guitarra, en blanco y negro',
+    'recitales/07-publico-en-la-escalera.jpg': 'Público sentado en una escalera filma y mira el show desde arriba',
+    'recitales/08-manos-en-el-piano.jpg': 'Manos sobre las teclas de un piano, en blanco y negro',
     'eventos/06-novia-preparandose.jpg':
       'Perfil de la novia con rodete y aros de perla mientras la maquillan, en blanco y negro',
     'eventos/07-novia-entrando-a-la-iglesia.jpg':
@@ -114,10 +125,6 @@ export const site = {
       'Tres jóvenes miran una notebook en estudio, uno de ellos con un mate',
     'eventos/01-casamiento-campo.jpg':
       'Novia con corona de flores y velo camina del brazo de un hombre con boina y pañuelo rojo en un casamiento de campo',
-    'recitales/01-cantante-con-guitarra.jpg':
-      'Cantante sonríe frente al micrófono mientras toca la guitarra acústica en un show nocturno',
-    'recitales/02-baterista-en-vivo.jpg':
-      'Baterista con anteojos de sol toca en vivo bajo luces azules y naranjas',
     'eventos/02-manos-casamiento.jpg':
       'Manos entrelazadas en blanco y negro durante un casamiento, junto a un ramo de flores',
   } as Record<string, string>,
