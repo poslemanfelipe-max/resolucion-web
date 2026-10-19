@@ -440,7 +440,7 @@ ul {
 
 .hero__puntos {
   position: absolute;
-  bottom: 4.5rem;
+  bottom: 2rem;
   left: 50%;
   translate: -50% 0;
   display: flex;
