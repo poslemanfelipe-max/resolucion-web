@@ -1,7 +1,35 @@
 ---
+import { Picture } from 'astro:assets';
 import { site } from '../data/site';
+import { foto } from '../lib/fotos';
 const c = site.contacto;
+const fotosEsencia = site.esencia.fotos
+  .map((f) => ({ src: foto(f.foto)!, alt: f.alt }))
+  .filter((f) => f.src);
 ---
+
+<section class="esencia" aria-labelledby="titulo-esencia">
+  <div class="esencia__texto reveal">
+    <p class="label">{site.esencia.label}</p>
+    <h2 id="titulo-esencia" class="esencia__titulo">{site.esencia.titulo}</h2>
+    {site.esencia.parrafos.map((p) => <p>{p}</p>)}
+  </div>
+  <ul class="esencia__fotos" role="list">
+    {
+      fotosEsencia.map((f, i) => (
+        <li class:list={['esencia__foto', `esencia__foto--${i + 1}`, 'reveal']}>
+          <Picture
+            src={f.src}
+            alt={f.alt}
+            formats={['avif', 'webp']}
+            widths={[400, 700, 1000].filter((w) => w <= f.src.width)}
+            sizes="(min-width: 900px) 30vw, 50vw"
+          />
+        </li>
+      ))
+    }
+  </ul>
+</section>
 
 <section id="contacto" class="contacto" aria-labelledby="titulo-contacto">
   <h2 id="titulo-contacto" class="contacto__titulo reveal">Trabajemos<br />juntos</h2>

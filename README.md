@@ -22,7 +22,7 @@ Las fotos están en la carpeta `fotos/`, con una subcarpeta por categoría:
 fotos/
 ├── moda/
 ├── eventos/
-├── corporativo/
+├── marcas/
 ├── recitales/
 ├── documental/
 └── sitio/        ← fotos especiales (portada, retrato de Juana)
@@ -137,6 +137,13 @@ Qué hay ahí:
 Conviene que cada video pese menos de 20 MB (los de WhatsApp ya vienen livianos).
 Para videos largos o de alta calidad, mejor subirlos a YouTube o Vimeo (abajo).
 
+### Videos dentro de una categoría
+
+Si un video va dentro de una sección (por ejemplo Marcas), subilo a
+`public/videos/<carpeta>` (ej. `public/videos/marcas`) con su `.jpg` de portada.
+Aparece debajo de las fotos de esa sección. El video de "Quién soy" está en
+`public/videos/sitio`.
+
 ### Videos de YouTube o Vimeo
 
 En `src/data/site.ts`, buscá la parte `video` y completá la `lista`:
@@ -208,7 +215,7 @@ Cada sección tiene su link directo:
 | ------------- | ------------------------ |
 | Moda          | `tudominio.com/#moda`        |
 | Eventos       | `tudominio.com/#eventos`     |
-| Corporativo   | `tudominio.com/#corporativo` |
+| Marcas        | `tudominio.com/#marcas`      |
 | Recitales     | `tudominio.com/#recitales`   |
 | Documental    | `tudominio.com/#documental`  |
 | Video         | `tudominio.com/#video`       |

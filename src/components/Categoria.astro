@@ -1,6 +1,7 @@
 ---
 import { Picture, getImage } from 'astro:assets';
 import { fotosDe } from '../lib/fotos';
+import VideosPropios from './VideosPropios.astro';
 
 interface Props {
   carpeta: string;
@@ -73,6 +74,7 @@ const portadaWidths = portada ? [640, 1000, 1600, 2000].filter((w) => w <= porta
       </ul>
     )
   }
+  <VideosPropios carpeta={carpeta} />
   {!portada && <p class="categoria__pronto">Nuevas fotos muy pronto.</p>}
   {portada && fija && galeria.length === 0 && <p class="categoria__pronto">Nuevas fotos muy pronto.</p>}
 </section>

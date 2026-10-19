@@ -978,12 +978,115 @@ ul {
 
 @media (min-width: 700px) {
   .videos__propios {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
     margin: 0 auto;
     gap: 2rem;
     overflow: visible;
+  }
+
+  .videos__propios .video {
+    flex: 0 1 300px;
+  }
+}
+
+/* Video horizontal (Quién soy) */
+.videos__propios--horizontal {
+  display: block;
+  padding: 0;
+  overflow: visible;
+}
+
+@media (min-width: 700px) {
+  .videos__propios--horizontal .video {
+    flex: none;
+  }
+}
+
+.video--horizontal .video__marco {
+  aspect-ratio: 2 / 1;
+}
+
+.quien__video {
+  grid-column: 1 / -1;
+}
+
+/* Reel destacado */
+.video__etiqueta {
+  margin-bottom: 0.6rem;
+}
+
+.video--destacado .video__marco {
+  box-shadow: 0 0 0 1px var(--texto);
+}
+
+/* Lo que me mueve */
+.esencia {
+  display: grid;
+  gap: 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 7rem) var(--gutter) 0;
+  border-top: 1px solid var(--linea);
+}
+
+.esencia__texto {
+  display: grid;
+  gap: 1rem;
+  max-width: 34rem;
+}
+
+.esencia__titulo {
+  font-size: clamp(2rem, 7vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 0.25rem;
+}
+
+.esencia__fotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.esencia__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
+
+.esencia__foto--2 {
+  grid-column: 1 / -1;
+  order: -1;
+}
+
+.esencia__foto--2 img {
+  aspect-ratio: 3 / 2;
+}
+
+@media (min-width: 900px) {
+  .esencia {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: center;
+  }
+
+  .esencia__fotos {
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .esencia__foto--2 {
+    grid-column: auto;
+    order: 0;
+  }
+
+  .esencia__foto--2 img {
+    aspect-ratio: 4 / 5;
   }
 }
 
@@ -1252,7 +1355,6 @@ ul {
 .contacto {
   text-align: center;
   padding: clamp(4rem, 10vw, 7rem) var(--gutter) clamp(3rem, 8vw, 5rem);
-  border-top: 1px solid var(--linea);
 }
 
 .contacto__titulo {

@@ -1,0 +1,87 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { site } from '../data/site';
+
+// Muestra los .mp4 de public/videos/<carpeta> (vacío = public/videos), en orden
+// alfabético. La portada de cada uno es la imagen .jpg con el mismo nombre.
+interface Props {
+  carpeta?: string;
+  formato?: 'vertical' | 'horizontal';
+}
+const { carpeta = '', formato = 'vertical' } = Astro.props;
+const dir = path.join(process.cwd(), 'public', 'videos', carpeta);
+const archivos = fs.existsSync(dir) ? fs.readdirSync(dir) : [];
+const base = carpeta ? `/videos/${carpeta}/` : '/videos/';
+const propios = archivos
+  .filter((a) => /\.mp4$/i.test(a))
+  .sort((a, b) => a.localeCompare(b, 'es', { numeric: true }))
+  .map((a) => {
+    const nombre = a.replace(/\.mp4$/i, '');
+    const poster = archivos.find((x) => x.toLowerCase() === `${nombre}.jpg`.toLowerCase());
+    const clave = carpeta ? `${carpeta}/${a}` : a;
+    const textos = site.video.archivos[clave] ?? {};
+    const desdeNombre = nombre.replace(/^[\d\s._-]+/, '').replace(/[-_]+/g, ' ').trim();
+    return {
+      src: base + a,
+      poster: poster ? base + poster : undefined,
+      titulo: textos.titulo,
+      destacado: textos.destacado,
+      etiqueta: textos.titulo ?? (desdeNombre.charAt(0).toUpperCase() + desdeNombre.slice(1) || 'Video'),
+      descripcion: textos.descripcion,
+    };
+  });
+const [w, h] = formato === 'vertical' ? [720, 1280] : [1280, 640];
+---
+
+{
+  propios.length > 0 && (
+    <ul class:list={['videos__propios', { 'videos__propios--horizontal': formato === 'horizontal' }]} role="list">
+      {propios.map((v) => (
+        <li class:list={['video', `video--${formato}`, { 'video--destacado': v.destacado }, 'reveal']}>
+          {v.destacado && <p class="label video__etiqueta">{v.destacado}</p>}
+          <div class="video__marco">
+            <button class="video__play" type="button" data-video={v.src} data-titulo={v.etiqueta}>
+              {v.poster && <img src={v.poster} alt="" loading="lazy" decoding="async" width={w} height={h} />}
+              <span class="video__icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+              <span class="visually-hidden">Reproducir video: {v.etiqueta}</span>
+            </button>
+          </div>
+          {v.titulo && <h3 class="video__titulo">{v.titulo}</h3>}
+          {v.descripcion && <p class="video__desc">{v.descripcion}</p>}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<script>
+  // Carga el reproductor recién cuando se toca "play" (así la página carga rápido).
+  document.querySelectorAll<HTMLButtonElement>('.video__play').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.video) {
+        const video = document.createElement('video');
+        video.src = btn.dataset.video;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('aria-label', btn.dataset.titulo ?? 'Video');
+        const poster = btn.querySelector('img');
+        if (poster) video.poster = poster.src;
+        btn.replaceWith(video);
+        video.play().catch(() => {});
+        video.focus();
+        return;
+      }
+      const iframe = document.createElement('iframe');
+      iframe.src = btn.dataset.embed!;
+      iframe.title = btn.dataset.titulo ?? 'Video';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      btn.replaceWith(iframe);
+      iframe.focus();
+    });
+  });
+</script>
