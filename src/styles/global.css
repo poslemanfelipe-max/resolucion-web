@@ -1013,6 +1013,24 @@ ul {
   grid-column: 1 / -1;
 }
 
+.quien__video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  /* Los blancos del video toman el beige del fondo y los bordes se funden */
+  mix-blend-mode: multiply;
+  filter: saturate(0.9);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 18%, #000 82%, transparent),
+    linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 18%, #000 82%, transparent),
+    linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
+  mask-composite: intersect;
+}
+
 /* Reel destacado */
 .video__etiqueta {
   margin-bottom: 0.6rem;

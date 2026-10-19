@@ -2,7 +2,6 @@
 import { Picture } from 'astro:assets';
 import { site } from '../data/site';
 import { foto } from '../lib/fotos';
-import VideosPropios from './VideosPropios.astro';
 const retrato = foto(site.imagenes.quienSoy);
 const q = site.quienSoy;
 ---
@@ -27,7 +26,35 @@ const q = site.quienSoy;
     {q.parrafos.map((p, i) => <p class={i === 0 ? 'quien__lead' : undefined}>{p}</p>)}
     <p><em>{q.cierre}</em></p>
   </div>
-  <div class="quien__video">
-    <VideosPropios carpeta="sitio" formato="horizontal" />
-  </div>
+  {
+    site.quienSoy.video && (
+      <div class="quien__video" aria-hidden="true">
+        <video
+          poster={site.quienSoy.video.replace(/\.mp4$/, '.jpg')}
+          muted
+          loop
+          playsinline
+          preload="none"
+          data-loop
+        >
+          <source src={site.quienSoy.video.replace(/\.mp4$/, '.webm')} type="video/webm" />
+          <source src={site.quienSoy.video} type="video/mp4" />
+        </video>
+      </div>
+    )
+  }
 </section>
+
+<script>
+  // El video de presentación arranca solo (sin sonido) cuando aparece en
+  // pantalla y se pausa al salir. Con "reducir movimiento" queda la imagen fija.
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLVideoElement>('video[data-loop]').forEach((v) => {
+    if (quieto || !('IntersectionObserver' in window)) return;
+    v.preload = 'auto';
+    new IntersectionObserver(
+      ([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()),
+      { rootMargin: '200px 0px' },
+    ).observe(v);
+  });
+</script>
