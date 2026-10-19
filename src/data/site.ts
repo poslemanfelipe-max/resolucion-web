@@ -68,7 +68,7 @@ export const site = {
   // pantalla la recorta: '50% 0%' = arriba, '50% 50%' = centro, '50% 100%' = abajo.
   // "triptico" suma dos fotos más a la carátula, lado a lado (en computadora).
   categorias: [
-    { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '60% 35%' },
+    { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '50% 28%' },
     { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 65%' },
     { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%', triptico: ['marcas/02-ponchos-artesanales.jpg', 'marcas/03-mate-junto-al-fuego.jpg'] },
     { carpeta: 'recitales', titulo: 'Recitales', bajada: 'Shows y música en vivo.', encuadre: '50% 35%', triptico: ['recitales/02-cantante-con-el-brazo-en-alto.jpg', 'recitales/03-cantante-bajo-luz-roja.jpg'] },
@@ -85,11 +85,11 @@ export const site = {
     'eventos/10-casa-silber-patio.jpg': 'Invitados conversan en el patio durante un evento de Silber Legal',
     'eventos/16-casa-silber-charlas.jpg': 'Patio lleno de invitados y panel de charlas en Casa Silber',
     // Moda
-    'moda/portada.jpg': 'Dos modelos con prendas en tonos tierra y celeste posan en un campo abierto bajo el cielo azul',
+    'moda/09-dos-modelos-en-el-campo.jpg': 'Dos modelos con prendas en tonos tierra y celeste posan en un campo abierto bajo el cielo azul',
     'moda/01-modelo-entre-movimiento.jpg': 'Modelo con vestido naranja mira a cámara mientras dos figuras pasan desenfocadas por delante',
     'moda/02-modelo-en-el-muelle.jpg': 'Modelo con chaleco tejido y bolso de cuero de pie en un muelle a contraluz',
     'moda/03-modelo-con-botas-de-montar.jpg': 'Modelo con conjunto celeste y beige y botas de montar, sentada frente a un campo de polo',
-    'moda/09-vestidos-en-el-campo.jpg': 'Dos modelos con vestidos estampados de cola larga caminan por el pasto',
+    'moda/portada.jpg': 'Dos modelos con vestidos estampados de cola larga caminan por el pasto en direcciones opuestas',
     'moda/04-modelo-con-sombrero.jpg': 'Modelo con sombrero de paja y blusa clara apoyada en un poste de madera',
     'moda/07-modelo-junto-al-alambrado.jpg': 'Modelo de pelo largo con vestido claro apoyada en un poste junto a un alambrado',
     'moda/05-modelo-recostada-en-el-pasto.jpg': 'Modelo con prendas bordó y blancas recostada en el pasto entre flores',
