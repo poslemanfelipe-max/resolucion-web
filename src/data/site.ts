@@ -57,7 +57,7 @@ export const site = {
     // Esta frase va en itálica:
     cierre: 'Mi trabajo combina una mirada documental, editorial y cinematográfica.',
     // Video corto que pasa solo, sin sonido, debajo del texto (en public/media/).
-    video: '/media/quien-soy-loop.mp4',
+    video: '', // vacío = sin video
   },
 
   // --- Categorías de trabajos ---------------------------------------
