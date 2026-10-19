@@ -1,6 +1,6 @@
 ---
 import { Picture, getImage } from 'astro:assets';
-import { fotosDe } from '../lib/fotos';
+import { fotosDe, foto } from '../lib/fotos';
 import VideosPropios from './VideosPropios.astro';
 
 interface Props {
@@ -9,16 +9,18 @@ interface Props {
   bajada: string;
   numero: string;
   encuadre?: string;
-  completa?: boolean;
+  triptico?: string[];
 }
-const { carpeta, titulo, bajada, numero, encuadre, completa } = Astro.props;
+const { carpeta, titulo, bajada, numero, encuadre, triptico = [] } = Astro.props;
 const todas = fotosDe(carpeta, titulo);
 
 // Si hay un archivo llamado "portada" (portada.jpg, portada.webp...), esa es la
 // carátula y no se repite en la grilla. Si no, la carátula es la primera foto.
 const esPortada = (ruta: string) => /^portada\.[a-z]+$/i.test(ruta.split('/').pop() ?? '');
 const fija = todas.find((f) => esPortada(f.ruta));
-const fotos = todas.filter((f) => !esPortada(f.ruta));
+// Fotos extra de la carátula en tríptico (no se repiten en la grilla).
+const extras = triptico.map((r) => ({ ruta: r, src: foto(r) })).filter((x) => x.src);
+const fotos = todas.filter((f) => !esPortada(f.ruta) && !triptico.includes(f.ruta));
 const portada = fija ?? fotos[0];
 const galeria = fija ? fotos : fotos.slice(1);
 const offset = fija ? 0 : 1; // la portada sin archivo "portada" también se abre en el visor
@@ -32,18 +34,16 @@ const portadaWidths = portada ? [640, 1000, 1600, 2000].filter((w) => w <= porta
 
 <section id={carpeta} class="categoria" aria-labelledby={`titulo-${carpeta}`} data-galeria>
   <div
-    class:list={['categoria__portada', { 'categoria__portada--vacia': !portada, 'categoria__portada--completa': completa }]}
+    class:list={['categoria__portada', { 'categoria__portada--vacia': !portada, 'categoria__portada--triptico': extras.length > 0 }]}
     style={encuadre ? `--encuadre: ${encuadre}` : undefined}
   >
     {
       portada && fija && (
         <div class="categoria__portada-img categoria__portada-img--fija">
-          {completa && (
-            <div class="categoria__portada-fondo" aria-hidden="true">
-              <Picture src={portada.src} alt="" formats={['avif', 'webp']} widths={[640]} sizes="640px" />
-            </div>
-          )}
-          <Picture src={portada.src} alt={portada.alt} formats={['avif', 'webp']} widths={portadaWidths} sizes="100vw" />
+          <Picture src={portada.src} alt={portada.alt} formats={['avif', 'webp']} widths={portadaWidths} sizes="(min-width: 700px) 34vw, 100vw" />
+          {extras.map((x) => (
+            <Picture pictureAttributes={{ class: "categoria__portada-extra" }} src={x.src!} alt="" formats={['avif', 'webp']} widths={[640, 1000]} sizes="34vw" />
+          ))}
         </div>
       )
     }

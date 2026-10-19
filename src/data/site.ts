@@ -66,11 +66,11 @@ export const site = {
   // El orden de esta lista es el orden en que aparecen en la página.
   // "encuadre" (opcional) elige qué parte de la carátula se ve cuando la
   // pantalla la recorta: '50% 0%' = arriba, '50% 50%' = centro, '50% 100%' = abajo.
-  // "completa: true" muestra la carátula entera en computadora (para fotos verticales).
+  // "triptico" suma dos fotos más a la carátula, lado a lado (en computadora).
   categorias: [
     { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '60% 35%' },
     { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 65%' },
-    { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%', completa: true },
+    { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%', triptico: ['marcas/02-ponchos-artesanales.jpg', 'marcas/03-mate-junto-al-fuego.jpg'] },
     { carpeta: 'recitales', titulo: 'Recitales', bajada: 'Shows y música en vivo.', encuadre: '50% 35%' },
     { carpeta: 'documental', titulo: 'Documental', bajada: 'Historias, viajes y proyectos personales.', encuadre: '20% 55%' },
   ],

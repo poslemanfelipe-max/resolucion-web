@@ -691,31 +691,22 @@ ul {
   object-position: var(--encuadre, 50% 30%);
 }
 
-/* Carátula vertical mostrada entera en pantallas anchas (opción "completa") */
-.categoria__portada-fondo {
+/* Carátula en tríptico: tres fotos lado a lado (en celular se ve solo la primera) */
+.categoria__portada-extra {
   display: none;
 }
 
-@media (min-width: 900px) {
-  .categoria__portada--completa .categoria__portada-img > picture {
-    position: relative;
+@media (min-width: 700px) {
+  .categoria__portada--triptico .categoria__portada-img {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
   }
 
-  .categoria__portada--completa .categoria__portada-img > picture img {
-    object-fit: contain;
-    object-position: 72% 50%;
-  }
-
-  .categoria__portada--completa .categoria__portada-fondo {
+  .categoria__portada--triptico .categoria__portada-img > picture {
     display: block;
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-
-  .categoria__portada--completa .categoria__portada-fondo img {
-    filter: blur(40px) brightness(0.55);
-    transform: scale(1.2);
+    min-width: 0;
+    height: 100%;
   }
 }
 
