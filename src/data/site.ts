@@ -68,7 +68,7 @@ export const site = {
   // pantalla la recorta: '50% 0%' = arriba, '50% 50%' = centro, '50% 100%' = abajo.
   // "triptico" suma dos fotos más a la carátula, lado a lado (en computadora).
   categorias: [
-    { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '50% 28%' },
+    { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '50% 37%' },
     { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 65%' },
     { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%', triptico: ['marcas/02-ponchos-artesanales.jpg', 'marcas/03-mate-junto-al-fuego.jpg'] },
     { carpeta: 'recitales', titulo: 'Recitales', bajada: 'Shows y música en vivo.', encuadre: '50% 35%', triptico: ['recitales/02-cantante-con-el-brazo-en-alto.jpg', 'recitales/03-cantante-bajo-luz-roja.jpg'] },
