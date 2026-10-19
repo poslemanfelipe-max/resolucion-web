@@ -66,10 +66,11 @@ export const site = {
   // El orden de esta lista es el orden en que aparecen en la página.
   // "encuadre" (opcional) elige qué parte de la carátula se ve cuando la
   // pantalla la recorta: '50% 0%' = arriba, '50% 50%' = centro, '50% 100%' = abajo.
+  // "completa: true" muestra la carátula entera en computadora (para fotos verticales).
   categorias: [
     { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '60% 35%' },
     { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 65%' },
-    { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%' },
+    { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%', completa: true },
     { carpeta: 'recitales', titulo: 'Recitales', bajada: 'Shows y música en vivo.', encuadre: '50% 35%' },
     { carpeta: 'documental', titulo: 'Documental', bajada: 'Historias, viajes y proyectos personales.', encuadre: '20% 55%' },
   ],
@@ -140,7 +141,6 @@ export const site = {
     'documental/06-terneros.jpg': 'Dos terneros con caravanas miran a cámara, en blanco y negro',
     'documental/07-cardon.jpg': 'Cardón alto frente a un pueblo de montaña entre la niebla',
     'documental/08-avion-en-la-pista.jpg': 'Operario con chaleco naranja junto a un avión de Aerolíneas Argentinas en la pista',
-    'documental/09-ventanilla-del-avion.jpg': 'Vista desde la ventanilla del avión: el ala, el motor y montañas nevadas',
     'documental/10-aeropuerto-nevado.jpg': 'Aeropuerto con aviones y montañas nevadas al amanecer',
     'documental/11-caballo.jpg': 'Primer plano del hocico de un caballo marrón con una mancha blanca',
     'documental/12-ternero.jpg': 'Ternero colorado con caravana mira de frente a la cámara',

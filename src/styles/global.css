@@ -691,6 +691,34 @@ ul {
   object-position: var(--encuadre, 50% 30%);
 }
 
+/* Carátula vertical mostrada entera en pantallas anchas (opción "completa") */
+.categoria__portada-fondo {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .categoria__portada--completa .categoria__portada-img > picture {
+    position: relative;
+  }
+
+  .categoria__portada--completa .categoria__portada-img > picture img {
+    object-fit: contain;
+    object-position: 72% 50%;
+  }
+
+  .categoria__portada--completa .categoria__portada-fondo {
+    display: block;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .categoria__portada--completa .categoria__portada-fondo img {
+    filter: blur(40px) brightness(0.55);
+    transform: scale(1.2);
+  }
+}
+
 .categoria__portada-img::after {
   content: '';
   position: absolute;
