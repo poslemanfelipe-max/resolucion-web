@@ -79,8 +79,15 @@ export const site = {
   // personas ciegas). Formato: 'carpeta/archivo.jpg': 'descripción'.
   // Si una foto no está acá, se usa el nombre del archivo o la categoría.
   descripcionesFotos: {
+    'recitales/04-publico-en-el-boliche.jpg': 'Boliche lleno de gente mirando el show, en blanco y negro',
+    'recitales/06-percusionista.jpg': 'Percusionista con boina toca las congas en el escenario, en blanco y negro',
+    'recitales/08-banda-posando.jpg': 'Cinco integrantes de una banda posan sonriendo con anteojos de sol en el backstage',
+    'recitales/10-musico-con-maracas.jpg': 'Músico con boina y camisa verde levanta unas maracas rojas bajo la luz del escenario',
+    'recitales/11-tecladista-y-saxofonista.jpg': 'Tecladista con corbata y saxofonista con anteojos tocan juntos en el escenario',
+    'recitales/13-publico-saltando.jpg': 'Público apretado frente al escenario salta y canta mirando a cámara',
+    'recitales/14-bateria-blanco-y-negro.jpg': 'Baterista con anteojos de sol toca bajo las luces del escenario, en blanco y negro',
     'recitales/02-cantante-con-el-brazo-en-alto.jpg': 'Cantante con el brazo en alto canta a contraluz, en blanco y negro',
-    'recitales/06-cantante-entre-luces.jpg': 'Cantante con remera roja canta con el micrófono entre rayos de luz azul',
+    'recitales/07-cantante-entre-luces.jpg': 'Cantante con remera roja canta con el micrófono entre rayos de luz azul',
     'eventos/04-casa-silber-encuentro.jpg': 'Collage de un encuentro de Silber Legal: invitados conversan y se abrazan en un patio',
     'eventos/10-casa-silber-patio.jpg': 'Invitados conversan en el patio durante un evento de Silber Legal',
     'eventos/16-casa-silber-charlas.jpg': 'Patio lleno de invitados y panel de charlas en Casa Silber',
@@ -131,11 +138,11 @@ export const site = {
     'recitales/portada.jpg': 'Cantante con anteojos de sol y corbata roja canta mientras toca un teclado rojo',
     'recitales/01-guitarrista-con-anteojos.jpg': 'Guitarrista con anteojos de sol y camisa clara toca una guitarra eléctrica en vivo',
     'recitales/03-cantante-bajo-luz-roja.jpg': 'Cantante con los ojos cerrados aferrada al micrófono bajo una luz roja',
-    'recitales/04-saxo-entre-el-publico.jpg': 'Saxofonista toca en medio del público que levanta las manos, en blanco y negro',
+    'recitales/09-saxo-entre-el-publico.jpg': 'Saxofonista toca en medio del público que levanta las manos, en blanco y negro',
     'recitales/05-baterista-sonriendo.jpg': 'Baterista con anteojos de sol sonríe con los palillos en alto',
-    'recitales/07-cantante-con-sombrero.jpg': 'Cantante con sombrero y barba canta frente al micrófono con su guitarra, en blanco y negro',
-    'recitales/08-publico-en-la-escalera.jpg': 'Público sentado en una escalera filma y mira el show desde arriba',
-    'recitales/09-manos-en-el-piano.jpg': 'Manos sobre las teclas de un piano, en blanco y negro',
+    'recitales/12-cantante-con-sombrero.jpg': 'Cantante con sombrero y barba canta frente al micrófono con su guitarra, en blanco y negro',
+    'recitales/15-publico-en-la-escalera.jpg': 'Público sentado en una escalera filma y mira el show desde arriba',
+    'recitales/16-manos-en-el-piano.jpg': 'Manos sobre las teclas de un piano, en blanco y negro',
     // Documental
     'documental/portada.jpg': 'Un grupo de llamas blancas mira a cámara en un campo verde con montañas de fondo',
     'documental/01-jeep-en-la-quebrada.jpg': 'Un jeep estacionado junto a un arroyo y un joven caminando, con montañas y nubes de fondo',
