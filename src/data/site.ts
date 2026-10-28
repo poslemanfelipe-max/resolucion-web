@@ -69,7 +69,7 @@ export const site = {
   // "triptico" suma dos fotos más a la carátula, lado a lado (en computadora).
   categorias: [
     { carpeta: 'moda', titulo: 'Moda', bajada: 'Editorial y campañas.', encuadre: '75% 50%' },
-    { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 65%' },
+    { carpeta: 'eventos', titulo: 'Eventos', bajada: 'Coberturas y experiencias.', encuadre: '50% 45%' },
     { carpeta: 'marcas', titulo: 'Marcas', bajada: 'Producto, campañas y contenido para redes.', encuadre: '50% 45%', triptico: ['marcas/02-ponchos-artesanales.jpg', 'marcas/03-mate-junto-al-fuego.jpg'] },
     { carpeta: 'recitales', titulo: 'Recitales', bajada: 'Shows y música en vivo.', encuadre: '50% 35%', triptico: ['recitales/02-cantante-con-el-brazo-en-alto.jpg', 'recitales/03-cantante-bajo-luz-roja.jpg'] },
     { carpeta: 'documental', titulo: 'Documental', bajada: 'Historias, viajes y proyectos personales.', encuadre: '20% 55%' },
@@ -83,7 +83,7 @@ export const site = {
     'eventos/09-civil-zapatos-y-ramo.jpg': 'Detalle de los zapatos bordados de la novia y su ramo de flores blancas sobre el pasto',
     'eventos/12-civil-hermanitos-abrazados.jpg': 'Dos hermanitos con camisas de lino se abrazan sonriendo, en blanco y negro',
     'eventos/16-civil-discurso.jpg': 'Un invitado da un discurso con micrófono mientras los novios lo escuchan de espaldas',
-    'eventos/19-civil-novios-de-espaldas.jpg': 'Los novios caminan de la mano de espaldas por un campo, en blanco y negro',
+    'eventos/portada.jpg': 'Los novios caminan de la mano de espaldas por un campo, en blanco y negro',
     'recitales/04-publico-en-el-boliche.jpg': 'Boliche lleno de gente mirando el show, en blanco y negro',
     'recitales/06-percusionista.jpg': 'Percusionista con boina toca las congas en el escenario, en blanco y negro',
     'recitales/08-banda-posando.jpg': 'Cinco integrantes de una banda posan sonriendo con anteojos de sol en el backstage',
@@ -109,7 +109,7 @@ export const site = {
     'moda/12-anillos-y-camisa.jpg': 'Manos con anillos dorados, uno con forma de estrella, sobre una camisa blanca',
     'moda/10-retrato-sonriendo.jpg': 'Retrato de una joven sonriente con blusa clara y pañuelo, entre plantas',
     // Eventos
-    'eventos/portada.jpg': 'Los novios de pie frente al altar de una iglesia, con los invitados a ambos lados de la alfombra roja',
+    'eventos/19-ceremonia-en-la-iglesia.jpg': 'Los novios de pie frente al altar de una iglesia, con los invitados a ambos lados de la alfombra roja',
     'eventos/01-novios-al-atardecer.jpg': 'Los novios caminan de la mano por un jardín al atardecer',
     'eventos/07-novia-entrando-a-la-iglesia.jpg': 'La novia, con capa de encaje, entra del brazo de un hombre de jaquet frente a una gran puerta de madera',
     'eventos/14-novia-con-amigas.jpg': 'La novia ríe abrazada con cuatro mujeres de vestidos de fiesta frente a un cerco verde',
